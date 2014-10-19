@@ -20,7 +20,7 @@ public:
 	float _direction; //  as radian
 	ofVec2f _location; // is this here or other Class?
 	ofVec2f _fieldSize; // is this here or other Class?
-	list<ofVec2f> _locHistory;
+	list<ofVec2f> _locHist;
     
     Bike();
 	
@@ -28,7 +28,7 @@ public:
 	void update();
 	void updateDirection();
 	void draw(); // for self drawing on oF App
-    void drawHistory(); // for self drawing on oF App
+    void drawTrack(); // for self drawing on oF App
 	void report(); // report position in stdout
 	
 	void pedal();
@@ -38,8 +38,9 @@ public:
     // debug
     void setLocation(ofVec2f loc);
     void setHandle(float st);
+
 };
 
 namespace Util{
-    void crop(ofVec2f src, ofVec2f dest);
+    void crop(ofVec2f* src, ofVec2f corner1, ofVec2f corner2);
 };

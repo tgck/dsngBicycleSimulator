@@ -21,7 +21,10 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
+    
+        void setupSpaces();
         void showDebug();
+        void showGuide();
     
         bool bAnimate;
         bool bFade;

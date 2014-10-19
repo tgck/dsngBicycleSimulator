@@ -5,7 +5,7 @@
 void ofApp::setup(){
 	cerr << "dsngKevOfx: controls Finder pointer with key event." << endl;
     ofSetFrameRate(30);
-    ofSetBackgroundAuto(false); // haikei clear wo OFF
+//    ofSetBackgroundAuto(false); // haikei clear wo OFF
     
     bAnimate = true;
     bFade = true;
@@ -20,19 +20,12 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    if (bFade) {
-        ofSetColor(128, 60);  // clear with alpha
-        ofRect(0, 0, ofGetWidth(), ofGetHeight());
-    } else {
-        ofSetColor(128);
-        ofRect(0, 0, ofGetWidth(), ofGetHeight());
-    }
-
-    // 座標系の変換
+    
     ofPushMatrix();
-    ofTranslate(ofGetWidth()/2.0, ofGetHeight()/2.0, 0);
-    ofScale(1, -1);
-    ofRotate(90);
+    
+    setupSpaces();
+    
+    showGuide();
     
 	bike.report();
 	bike.draw();
@@ -41,7 +34,17 @@ void ofApp::draw(){
     
     showDebug();
 }
+//--------------------------------------------------------------
+// 描画時に必要な、座標系の変換をおこないます
+void ofApp::setupSpaces(){
+    ofTranslate(ofGetWidth()/2.0, ofGetHeight()/2.0, 0);
+    ofRotate(-90);
+    ofScale(1, 1);
+//    ofTranslate(ofGetWidth()/2.0, ofGetHeight()/2.0, 0);
 
+}
+
+//--------------------------------------------------------------
 void ofApp::showDebug(){
     // 表示用の計算
     
@@ -73,6 +76,24 @@ void ofApp::showDebug(){
 }
 
 //--------------------------------------------------------------
+// 座標系を表現するガイドの表示
+void ofApp::showGuide(){
+    float scale = 1000;
+    
+    ofPushStyle();
+    
+    ofSetColor(188, 0, 0);
+    ofSetLineWidth(1.0);    ofLine(-1*scale, 0, 1*scale, 0); // X軸, Red
+    ofSetLineWidth(3.0);   ofLine(0, 0, 1*scale, 0);
+
+    ofSetColor(0, 188, 0);
+    ofSetLineWidth(1.0);    ofLine(0, -1*scale, 0, 1*scale); // Y軸, Green
+    ofSetLineWidth(3.0);    ofLine(0, 0, 0, 1*scale); // Y軸, Green
+    
+    ofPopStyle();
+}
+//--------------------------------------------------------------
+//
 void ofApp::keyPressed(int key){
 	fprintf(stdout, "key pressed [%d]\n", key);
     switch (key) {
@@ -100,7 +121,6 @@ void ofApp::keyPressed(int key){
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-	fprintf(stdout, "---- key released [%d]\n", key);
 }
 
 //--------------------------------------------------------------
