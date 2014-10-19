@@ -28,13 +28,23 @@ void ofApp::draw(){
         ofRect(0, 0, ofGetWidth(), ofGetHeight());
     }
 
+    // 座標系の変換
+    ofPushMatrix();
+    ofTranslate(ofGetWidth()/2.0, ofGetHeight()/2.0, 0);
+    ofScale(1, -1);
+    ofRotate(90);
+    
 	bike.report();
 	bike.draw();
+
+    ofPopMatrix();
     
     showDebug();
 }
 
 void ofApp::showDebug(){
+    // 表示用の計算
+    
     Bike *b = &bike;
     float sp = b->_speed;
     float st = b->_steer;
@@ -54,7 +64,7 @@ void ofApp::showDebug(){
     s2 << " .. "  << ofToString(st, 2) << endl;
     
     
-    // show
+    // 表示
     ofPushStyle();
     ofSetColor(0);
     ofDrawBitmapString(s1.str(), 20, 20);
@@ -80,6 +90,10 @@ void ofApp::keyPressed(int key){
             break;
         case ' ':
             bAnimate = !bAnimate;
+            break;
+        case 'a':
+            bike.setLocation(ofVec2f(0, 0));
+            bike.setHandle(0);
             break;
     }
 }

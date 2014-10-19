@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "appConst.h"
 #include "Bike.h"
 
 class ofApp : public ofBaseApp{
