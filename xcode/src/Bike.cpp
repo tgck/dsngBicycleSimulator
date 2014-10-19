@@ -31,23 +31,15 @@ void Bike::update(){
 	// update position
     _location.x += _speed * cos(_direction);
 	_location.y += _speed * sin(_direction);
-
-    cout << _direction << endl;
-    
     Util::crop(&_location, ofVec2f(-200, -100), ofVec2f(200, 100));
-    cout << _fieldSize/2.0 << endl;
     
     // update history
-    if (_locHist.size() > 20) {
-        _locHist.pop_front();
-        _locHist.push_back(_location);
-    } else {
-        _locHist.push_back(_location);
-    }
+    if (_locHist.size() >= 20) _locHist.pop_front();
+    _locHist.push_back(_location);
 }
 
 //--------------------------------------------------------------
-// crop
+// crop()
 // 座標sを、端点p1, 端点p2から作られる領域でクロッピングします。
 // 参照渡しによる、座標の更新を行います
 //
@@ -57,12 +49,15 @@ void Util::crop(ofVec2f *s, ofVec2f p1, ofVec2f p2){
     if (s->y > p2.y) {s->y = p1.y; cout<<"croped! 3" << endl;}
     if (s->y < p1.y) {s->y = p2.y; cout<<"croped! 4" << endl;}
 };
+
 //--------------------------------------------------------------
-// updateDirection
+// updateDirection()
 // 局所系であるハンドル角をもとに、directionの更新をおこないます
+//
 void Bike::updateDirection(){
 	_direction += ofMap(_steer, -1.0, 1.0, -PI/2 *0.1, PI/2 * 0.1);
 }
+
 //--------------------------------------------------------------
 //  描画系
 //--------------------------------------------------------------
@@ -74,15 +69,21 @@ void Bike::updateDirection(){
 void Bike::draw(){
     cout << "SIZE: "  << _locHist.size() << endl;
     
+    // 軌跡
+    drawTrack();
+    
     ofPushStyle();
 
-	ofSetColor(0);
-    ofNoFill();
-	ofCircle(_location.x, _location.y, 10);
-    
+    // 円と方向線
+	ofSetColor(COLOR_BIKE); ofNoFill();
+	
+    ofPushMatrix();
+        ofTranslate(_location.x, _location.y);
+        ofCircle(0, 0, 10);
+        ofLine(0, 0, 10*cos(_direction), 10*sin(_direction));
+    ofPopMatrix();
+
     ofPopStyle();
-    
-    drawTrack();
 }
 
 //
@@ -90,9 +91,10 @@ void Bike::draw(){
 // 自転車の軌跡の描画
 //
 void Bike::drawTrack(){
+    
     ofPushStyle();
-    ofSetColor(255, 0, 0);
-    ofNoFill();
+    
+    ofSetColor(COLOR_TRACK); ofNoFill();
     
 	list<ofVec2f>::iterator it = _locHist.begin();
 	while(it != _locHist.end())
@@ -100,33 +102,24 @@ void Bike::drawTrack(){
         ofCircle((int)it->x, (int)it->y, 8);
 		++it;  // イテレータを１つ進める
 	}
-	ofSetColor(0);
-    ofNoFill();
-	ofCircle(_location.x, _location.y, 10);
     
     ofPopStyle();
 }
 
-// setLocation
+//
+// setLocation()
 // 自転車の位置を変更します
+//
 void Bike::setLocation(ofVec2f loc){
     _location = loc;
 }
 
+//
 // setHandle
-// 自転車のハンドル向きを変更します
+// 自転車のハンドル向きの上書き
+//
 void Bike::setHandle(float st){
     _steer = st;
-}
-
-void Bike::report(){
-    stringstream s;
-    s   << " sp :" << ofToString(_speed)
-        << " st :" << ofToString(_steer)
-        << " dir:" << ofToString(_direction)
-        << " px :" << ofToString(_location.x)
-        << " py :" << ofToString(_location.y);
-    cout << s.str() << endl;
 }
 
 void Bike::pedal(){
@@ -137,11 +130,29 @@ void Bike::stop(){
 	_speed = 0;
 }
 
+//
+// handle()
+// 自転車のハンドルの変更
+//
 void Bike::handle(float normed){
 	_steer += normed;
     
     // clipping
     _steer = ofClamp(_steer, -1.0, 1.0);
+}
+
+//
+// report
+// 自転車に関するロギングをおこないます
+//
+void Bike::report(){
+    stringstream s;
+    s   << " sp :" << ofToString(_speed)
+    << " st :" << ofToString(_steer)
+    << " dir:" << ofToString(_direction)
+    << " px :" << ofToString(_location.x)
+    << " py :" << ofToString(_location.y);
+    cout << s.str() << endl;
 }
 
 

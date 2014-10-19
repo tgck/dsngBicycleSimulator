@@ -21,16 +21,18 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-    
+        // bike and fields
         void setupSpaces();
-        void showDebug();
-        void showGuide();
-    
+        Bike bike;
+
+        // app
         bool bAnimate;
         bool bFade;
     
-        Bike bike;
         ofVec2f dispSize; // target display size
+        void showDebug();
+        void showGuide();
+
     
 };
 
