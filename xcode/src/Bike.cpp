@@ -67,14 +67,11 @@ void Bike::updateDirection(){
 // 自転車の描画を行います
 //
 void Bike::draw(){
-    cout << "SIZE: "  << _locHist.size() << endl;
     
-    // 軌跡
-    drawTrack();
+    drawTrack(); // 軌跡
     
     ofPushStyle();
 
-    // 円と方向線
 	ofSetColor(COLOR_BIKE); ofNoFill();
 	
     ofPushMatrix();
@@ -100,7 +97,7 @@ void Bike::drawTrack(){
 	while(it != _locHist.end())
 	{
         ofCircle((int)it->x, (int)it->y, 8);
-		++it;  // イテレータを１つ進める
+		++it;
 	}
     
     ofPopStyle();

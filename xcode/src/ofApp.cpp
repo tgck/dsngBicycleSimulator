@@ -3,7 +3,6 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	cerr << "dsngKevOfx: controls Finder pointer with key event." << endl;
     ofSetFrameRate(30);
     
     // Window Title for help
@@ -26,8 +25,8 @@ void ofApp::draw(){
     ofPushMatrix();
     
     setupSpaces(); // 座標系
-    
     showGuide(); // ガイド
+
 	bike.report();
 	bike.draw();
 
