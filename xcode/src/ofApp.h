@@ -43,7 +43,11 @@ class ofApp : public ofBaseApp{
     
 private:
         ofBuffer tBuf;
-        void loadTextBuffer();
+        void setupFinderItems();
         void tBuf2Items();
 };
 
+
+namespace Util{
+    void crop(ofVec2f* src, ofVec2f corner1, ofVec2f corner2);
+};

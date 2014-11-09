@@ -38,3 +38,5 @@ void FinderItem::draw() {
     ofCircle(_p.x, _p.y, ITEM_SIZE_R);
     
 }
+
+

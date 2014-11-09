@@ -6,7 +6,8 @@
 
 //--------------------------------------------------------------
 // setupSpaces
-// 描画時に必要な、座標系の変換をおこないます
+// - 描画時に必要な、座標系の変換をおこないます
+
 void ofApp::setupSpaces(){
     ofTranslate(ofGetWidth()/2.0, ofGetHeight()/2.0, 0);
     ofRotate(-90);
@@ -15,7 +16,7 @@ void ofApp::setupSpaces(){
 
 //--------------------------------------------------------------
 // showDebug
-// デバッグ情報の表示
+// - デバッグ情報を表示します
 
 void ofApp::showDebug(){
     
@@ -50,8 +51,9 @@ void ofApp::showDebug(){
 }
 
 //--------------------------------------------------------------
-// 座標系を表現するガイドの表示
-// X, Y軸の正方向を太線とする
+// showGuide
+// - 座標系を表現するガイドを表示します
+// - X, Y軸の正方向を太線とする
 
 void ofApp::showGuide(){
     
@@ -71,13 +73,13 @@ void ofApp::showGuide(){
 }
 
 //--------------------------------------------------------------
-// ファイル読み込み
-// txtファイルからofVec2f(FinderItem座標)に変換
+// setupFinderItems
+// - txtを読み込んで、ofVec2f(FinderItem座標)のリストを構築します
 //
 // IN形式: /dump 2 23649_loofa_A_005.aif 189 202
 //         任意の複数行(0〜N)
 
-void ofApp::loadTextBuffer(){
+void ofApp::setupFinderItems(){
 
     // file -> buffer
     ofBuffer buffer = ofBufferFromFile("finderItems.txt");

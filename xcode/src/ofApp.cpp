@@ -12,7 +12,7 @@ void ofApp::setup(){
     bFade = true;
     
     bike.setup();
-    loadTextBuffer();
+    setupFinderItems();
 }
 
 //--------------------------------------------------------------
