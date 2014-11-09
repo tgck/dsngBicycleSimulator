@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "appConst.h"
 #include "Bike.h"
+#include "FinderItem.h"
 
 class ofApp : public ofBaseApp{
 
@@ -31,7 +32,7 @@ class ofApp : public ofBaseApp{
         ofVec2f dispSize;
     
         // Finder Items
-        vector<ofVec2f> items;
+        vector<FinderItem> items;
     
         bool bAnimate;
         bool bFade;

@@ -90,8 +90,8 @@ void ofApp::loadTextBuffer(){
             
             if(line.empty() == false) {
                 vector<string> words = ofSplitString(line, " ");
-                ofVec2f tmpPoint = ofVec2f(ofToFloat(words[3]), ofToFloat(words[4]));
-                items.push_back(tmpPoint);
+                FinderItem tmpItem = FinderItem(ofVec2f(ofToFloat(words[3]), ofToFloat(words[4])));
+                items.push_back(tmpItem);
             }
         }
     } // load end
@@ -99,12 +99,6 @@ void ofApp::loadTextBuffer(){
     // debug info
     cout << "FinderItems size:" << items.size() << endl;
     for (int i=0; i<items.size(); i++) {
-        cout << "item[" << i << "] " << items[i].x << ":" << items[i].y << endl;
+        cout << "item[" << i << "] " << items[i]._p.x << ":" << items[i]._p.y << endl;
     }
-}
-
-//--------------------------------------------------------------
-// ファインダー項目の座標の作成
-// ofBufferからVector<ofVec2f>
-void ofApp::drawItems(){    
 }
