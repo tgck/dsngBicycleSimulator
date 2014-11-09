@@ -12,6 +12,7 @@ void ofApp::setup(){
     bFade = true;
     
     bike.setup();
+    field.setup(ofVec2f(200, 400));
     setupFinderItems();
 }
 
@@ -24,16 +25,29 @@ void ofApp::update(){
 void ofApp::draw(){
 
     ofPushMatrix();
-    
+
     setupSpaces(); // 座標系
     showGuide(); // ガイド
 
+    // Field
+    field.draw();
+    
+    // FinderItems
+    ofPushStyle();
+    ofSetColor(188);
+    for (int i=0; i<items.size(); i++){
+        items[i].draw();
+    }
+    ofPopStyle();
+    
+    // Bike
 	bike.report();
 	bike.draw();
 
     ofPopMatrix();
     
     showDebug();
+        
 }
 
 

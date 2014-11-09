@@ -19,8 +19,8 @@ public:
 	float _steer;
 	float _direction;   //  as radian
 	ofVec2f _location;  // is this here or other Class?
-	ofVec2f _fieldSize; // is this here or other Class?
-	list<ofVec2f> _locHist;
+	// ofVec2f _fieldSize; // is this here or other Class?
+    list<ofVec2f> _locHist;
     
     Bike();
 	
@@ -43,4 +43,4 @@ public:
 
 namespace Util{
     void crop(ofVec2f* src, ofVec2f corner1, ofVec2f corner2);
-};
+}

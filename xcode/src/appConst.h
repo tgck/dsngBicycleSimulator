@@ -7,7 +7,8 @@
 //
 #pragma once
 
-static int winSize[2] = {200, 400};
+//static int winSize[2] = {200, 400};
+static int winSize[2] = {800, 600};
 
 //
 // color schemes

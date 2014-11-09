@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "appConst.h"
 #include "Bike.h"
+#include "Desktop.h"
 #include "FinderItem.h"
 
 class ofApp : public ofBaseApp{
@@ -27,9 +28,8 @@ class ofApp : public ofBaseApp{
 
         // bike and fields
         Bike bike;
-    
-        // target display size
-        ofVec2f dispSize;
+//        ofVec2f fieldSize;
+        Desktop field;
     
         // Finder Items
         vector<FinderItem> items;
@@ -49,5 +49,5 @@ private:
 
 
 namespace Util{
-    void crop(ofVec2f* src, ofVec2f corner1, ofVec2f corner2);
+    void crop(ofVec2f* src, const ofVec2f corner1, const ofVec2f corner2);
 };

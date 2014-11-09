@@ -16,7 +16,7 @@ void Bike::setup(){
 	_steer = 0.0;
 	_direction = 0.0;
 	_location = ofVec2f(ofGetWidth()/2, ofGetHeight()/2);
-	_fieldSize = ofVec2f(winSize[0], winSize[1]);
+	// _fieldSize = ofVec2f(winSize[0], winSize[1]);
     
     // history
     _locHist.resize(20);
@@ -31,7 +31,10 @@ void Bike::update(){
 	// update position
     _location.x += _speed * cos(_direction);
 	_location.y += _speed * sin(_direction);
-    Util::crop(&_location, ofVec2f(-200, -100), ofVec2f(200, 100));
+//    Util::crop(&_location, ofVec2f(-200, -100), ofVec2f(200, 100));
+    
+    // TODO desktopに
+    Util::crop(&_location, ofVec2f(-100, -200), ofVec2f(100, 200));
     
     // update history
     if (_locHist.size() >= 20) _locHist.pop_front();
@@ -43,11 +46,11 @@ void Bike::update(){
 // 座標sを、端点p1, 端点p2から作られる領域でクロッピングします。
 // 参照渡しによる、座標の更新を行います
 //
-void Util::crop(ofVec2f *s, ofVec2f p1, ofVec2f p2){
-    if (s->x > p2.x) {s->x = p1.x; cout<<"croped! 1" << endl;}
-    if (s->x < p1.x) {s->x = p2.x; cout<<"croped! 2" << endl;}
-    if (s->y > p2.y) {s->y = p1.y; cout<<"croped! 3" << endl;}
-    if (s->y < p1.y) {s->y = p2.y; cout<<"croped! 4" << endl;}
+void Util::crop(ofVec2f *s, const ofVec2f p1, const ofVec2f p2){
+    if (s->x > p2.x) {s->x = p1.x; cout << "croped! 1" << endl;}
+    if (s->x < p1.x) {s->x = p2.x; cout << "croped! 2" << endl;}
+    if (s->y > p2.y) {s->y = p1.y; cout << "croped! 3" << endl;}
+    if (s->y < p1.y) {s->y = p2.y; cout << "croped! 4" << endl;}
 };
 
 //--------------------------------------------------------------
