@@ -21,18 +21,28 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-        // bike and fields
-        void setupSpaces();
-        Bike bike;
+    
+        // - - - - app - - - - //
 
-        // app
+        // bike and fields
+        Bike bike;
+    
+        // target display size
+        ofVec2f dispSize;
+    
+        // Finder Items
+        vector<ofVec2f> items;
+    
         bool bAnimate;
         bool bFade;
-    
-        ofVec2f dispSize; // target display size
+
         void showDebug();
         void showGuide();
-
+        void setupSpaces();
     
+private:
+        ofBuffer tBuf;
+        void loadTextBuffer();
+        void tBuf2Items();
 };
 

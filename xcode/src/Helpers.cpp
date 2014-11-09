@@ -69,3 +69,42 @@ void ofApp::showGuide(){
     
     ofPopStyle();
 }
+
+//--------------------------------------------------------------
+// ファイル読み込み
+// txtファイルからofVec2f(FinderItem座標)に変換
+//
+// IN形式: /dump 2 23649_loofa_A_005.aif 189 202
+//         任意の複数行(0〜N)
+
+void ofApp::loadTextBuffer(){
+
+    // file -> buffer
+    ofBuffer buffer = ofBufferFromFile("finderItems.txt");
+    
+    // buffer -> vec2f
+    if(buffer.size()) {
+        while(buffer.isLastLine() == false) {
+            
+            string line = buffer.getNextLine();
+            
+            if(line.empty() == false) {
+                vector<string> words = ofSplitString(line, " ");
+                ofVec2f tmpPoint = ofVec2f(ofToFloat(words[3]), ofToFloat(words[4]));
+                items.push_back(tmpPoint);
+            }
+        }
+    } // load end
+
+    // debug info
+    cout << "FinderItems size:" << items.size() << endl;
+    for (int i=0; i<items.size(); i++) {
+        cout << "item[" << i << "] " << items[i].x << ":" << items[i].y << endl;
+    }
+}
+
+//--------------------------------------------------------------
+// ファインダー項目の座標の作成
+// ofBufferからVector<ofVec2f>
+void ofApp::drawItems(){    
+}
