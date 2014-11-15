@@ -25,29 +25,43 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
+    
         // - - - - app - - - - //
 
-        // bike and fields
+        // Bike and Field
         Bike bike;
         Desktop desktop;
-
-        // Finder Items
-        vector<FinderItem> items;
-    
-        bool bAnimate;
-        bool bFade;
-        bool bSendMode;
-        bool bNeedSending;  // 送信メッセージあり
     
         void showDebug();
         void showGuide();
         void setupSpaces();
+
+        // Modes, Flags and so on.
+        bool bAnimate;
+        bool bFade;
+        bool bUseSensor;
+        bool bSendMode;
+        bool bNeedSending;  // 送信メッセージあり
     
-        // - - - - osc - - - - //
+        // Finder Items
+        vector<FinderItem> items;
+    
+        // - - - - oscsend    - - - - //
         ofxOscSender senders[3];
+
         void setupSender(bool); // bool で起動要否を切替
         void updateSender();
         void send(); // メッセージ送信
+
+        // - - - - oscreceive - - - - //
+        ofxOscReceiver receiver;
+        int current_msg_string;
+        string msg_strings[NUM_MSG_STRINGS];
+        float timers[NUM_MSG_STRINGS];
+    
+        void setupReceiver(bool); // bool で起動要否を切替
+        void updateReceiver();
+
     
 private:
         ofBuffer tBuf;
@@ -57,6 +71,9 @@ private:
         // メッセージ送信
         int _sendCount; // メッセージ送信カウンタ
         float _prevSendTime;    // 前回メッセージ送信時刻(ミリ秒);
+    
+        // メッセージ受信
+        string dumpOSC(ofxOscMessage m);
 };
 
 

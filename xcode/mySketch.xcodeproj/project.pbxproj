@@ -22,6 +22,8 @@
 		231197211A1792C0006A67FC /* ofxOscParameterSync.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 231197101A1792C0006A67FC /* ofxOscParameterSync.cpp */; };
 		231197221A1792C0006A67FC /* ofxOscReceiver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 231197121A1792C0006A67FC /* ofxOscReceiver.cpp */; };
 		231197231A1792C0006A67FC /* ofxOscSender.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 231197141A1792C0006A67FC /* ofxOscSender.cpp */; };
+		231197281A17AE99006A67FC /* HelpersForReceiving.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 231197271A17AE99006A67FC /* HelpersForReceiving.cpp */; };
+		2311972A1A17C296006A67FC /* UserEvents.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 231197291A17C296006A67FC /* UserEvents.cpp */; };
 		23C2081F1A0F4C0000C1440B /* FinderItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23C2081D1A0F4C0000C1440B /* FinderItem.cpp */; };
 		23C208221A0F565300C1440B /* Desktop.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23C208201A0F565300C1440B /* Desktop.cpp */; };
 		23C8F97619EC40CC00143BC6 /* Bike.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23C8F97419EC40CC00143BC6 /* Bike.cpp */; };
@@ -114,6 +116,8 @@
 		231197131A1792C0006A67FC /* ofxOscReceiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOscReceiver.h; sourceTree = "<group>"; };
 		231197141A1792C0006A67FC /* ofxOscSender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxOscSender.cpp; sourceTree = "<group>"; };
 		231197151A1792C0006A67FC /* ofxOscSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOscSender.h; sourceTree = "<group>"; };
+		231197271A17AE99006A67FC /* HelpersForReceiving.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HelpersForReceiving.cpp; sourceTree = "<group>"; };
+		231197291A17C296006A67FC /* UserEvents.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UserEvents.cpp; sourceTree = "<group>"; };
 		23C2081D1A0F4C0000C1440B /* FinderItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FinderItem.cpp; sourceTree = "<group>"; };
 		23C2081E1A0F4C0000C1440B /* FinderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FinderItem.h; sourceTree = "<group>"; };
 		23C208201A0F565300C1440B /* Desktop.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Desktop.cpp; sourceTree = "<group>"; };
@@ -371,8 +375,10 @@
 				23C8F97419EC40CC00143BC6 /* Bike.cpp */,
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
+				231197291A17C296006A67FC /* UserEvents.cpp */,
 				23C8F98A19F4170D00143BC6 /* Helpers.cpp */,
 				231196E81A17909B006A67FC /* HelpersForSending.cpp */,
+				231197271A17AE99006A67FC /* HelpersForReceiving.cpp */,
 				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
 			);
 			path = src;
@@ -477,6 +483,7 @@
 				23C2081F1A0F4C0000C1440B /* FinderItem.cpp in Sources */,
 				231197221A1792C0006A67FC /* ofxOscReceiver.cpp in Sources */,
 				2311971D1A1792C0006A67FC /* OscReceivedElements.cpp in Sources */,
+				231197281A17AE99006A67FC /* HelpersForReceiving.cpp in Sources */,
 				231197171A1792C0006A67FC /* NetworkingUtils.cpp in Sources */,
 				231197231A1792C0006A67FC /* ofxOscSender.cpp in Sources */,
 				2311971C1A1792C0006A67FC /* OscPrintReceivedElements.cpp in Sources */,
@@ -492,6 +499,7 @@
 				2311971E1A1792C0006A67FC /* OscTypes.cpp in Sources */,
 				231196E91A17909B006A67FC /* HelpersForSending.cpp in Sources */,
 				231197161A1792C0006A67FC /* IpEndpointName.cpp in Sources */,
+				2311972A1A17C296006A67FC /* UserEvents.cpp in Sources */,
 				231197211A1792C0006A67FC /* ofxOscParameterSync.cpp in Sources */,
 				231197191A1792C0006A67FC /* NetworkingUtilsWin.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
