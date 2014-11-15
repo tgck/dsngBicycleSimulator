@@ -10,6 +10,10 @@ static float sendInterval = 3000.0;
 #define L_PORT 8001
 #define NUM_MSG_STRINGS 20
 
+// OSCタグ
+#define OSCA_SENSOR_PEDAL "/pedal"
+#define OSCA_SENSOR_STEER "/steerAngle"
+
 // アプリケーションウィンドウに対する、デスクトップフィールドの大きさ
 #define WINDOW_DESKTOPFIELD_RATIO 0.4
 

@@ -5,10 +5,9 @@
 // - 上位のアプリケーションからの接続をリスン開始します。
 
 void ofApp::setupReceiver(bool flag){
-//    ofxOscReceiver receiver;
-//    int current_msg_string;
-//    string msg_strings[NUM_MSG_STRINGS];
-//    float timers[NUM_MSG_STRINGS];
+
+    // 受信モードオフであれば、
+    // receiverを初期化せず抜ける。
     if (!flag) return;
 
 	cout << "listening on [" << L_PORT << "]" << endl;
@@ -20,7 +19,7 @@ void ofApp::setupReceiver(bool flag){
 // updateReceiver
 // - 上位アプリケーションからのメッセージを受信します。
 
-// Note: 受信メッセージ例
+// Note: 受信メッセージの例
 //      /steerReset         -- ※不使用
 //      /pedal              -- ※ 1回転するごとに bang
 //      /steerAngle 0.111   -- ハンドル角 (-1.0 .. 1.0)
@@ -39,16 +38,22 @@ void ofApp::updateReceiver(){
 		}
 	}
     
-	// check for waiting messages
 	while(receiver.hasWaitingMessages()){
         
 		ofxOscMessage m;
 		receiver.getNextMessage(&m);
-        dumpOSC(m);
         
-        // TODO データの詰込　-> bike モデル
+        // pedal, steer
+        // TODO : bike モデルへの取り込み
+        // TODO : switch 文にする
+        if (m.getAddress() == OSCA_SENSOR_PEDAL) {
+            cout  << " received PEDAL" << endl;
+        } else if (m.getAddress() == OSCA_SENSOR_STEER) {
+            float tmpSteer = m.getArgAsFloat(0);
+            cout  << " received STEER[" << tmpSteer << "]" << endl;
+        }
         
-        
+        // dumpOSC(m);
     }
     
 }
