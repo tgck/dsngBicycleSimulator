@@ -3,11 +3,13 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+    
     ofSetFrameRate(30);
     
     // Window Title for help
     ofSetWindowTitle(ofToString(winSize[0]) +  " " +  ofToString(winSize[1]));
     
+    bUseSensor = true;
     bAnimate = true;
     bFade = true;
 
@@ -16,8 +18,14 @@ void ofApp::setup(){
     bike.setup();
     bike.setupCropSettings(desktop.getCornerBegin(), desktop.getCornerEnd());
     
+    
+    // リソースファイル読込
     setupFinderItems();
     
+    // 通信のセットアップ - 受信部
+    setupReceiver(bUseSensor);
+
+    // 通信のセットアップ - 送信部
 //    setupSender(false);
     setupSender(true);
 }
@@ -25,6 +33,8 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 
+    if (bUseSensor) updateReceiver();
+    
     // モデルの更新
     if (bAnimate) bike.update();
     

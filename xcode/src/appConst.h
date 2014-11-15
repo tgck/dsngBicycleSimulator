@@ -6,6 +6,10 @@ static int winSize[2] = {1200, 800};
 // メッセージ送信間隔(ミリ秒) [333.3]
 static float sendInterval = 3000.0;
 
+// メッセージ受信
+#define L_PORT 8001
+#define NUM_MSG_STRINGS 20
+
 // アプリケーションウィンドウに対する、デスクトップフィールドの大きさ
 #define WINDOW_DESKTOPFIELD_RATIO 0.4
 
