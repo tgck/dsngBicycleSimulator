@@ -22,8 +22,8 @@ void ofApp::setupSender(bool flag){
         
         // ofxOSCの初期化
         // 宛先は3つ。
-        senders[0].setup("127.0.0.1", 3001); // Tested with Max
-//        senders[0].setup("127.0.0.1", 12011);
+//        senders[0].setup("127.0.0.1", 3001); // Tested with Max
+        senders[0].setup("127.0.0.1", 12011);
         senders[1].setup("127.0.0.1", 12022);
         senders[2].setup("127.0.0.1", 12033);
     }
@@ -62,7 +62,7 @@ void ofApp::updateSender(){
 
 void ofApp::send(){
     
-    // メッセージ送信
+    // メッセージ作成
     ofxOscMessage m0, m1, m2, m3, m4, m5;
     m0.setAddress("/dsng2/ctl/FRAMEINFO"); // 送信回次 int, 時刻 float
     m1.setAddress("/dsng2/ctl/sp");  // 速さ(スカラー量), float
