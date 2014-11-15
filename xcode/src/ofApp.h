@@ -29,16 +29,18 @@ class ofApp : public ofBaseApp{
         // bike and fields
         Bike bike;
         Desktop desktop;
-    
+
         // Finder Items
         vector<FinderItem> items;
     
         bool bAnimate;
         bool bFade;
-
+        bool bSending; // クライアントへのメッセージ送信有無
+    
         void showDebug();
         void showGuide();
         void setupSpaces();
+        void setupSender(bool); // bool で起動要否を切替
     
 private:
         ofBuffer tBuf;

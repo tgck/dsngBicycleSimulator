@@ -17,6 +17,8 @@ void ofApp::setup(){
     bike.setupCropSettings(desktop.getCornerBegin(), desktop.getCornerEnd());
     
     setupFinderItems();
+    
+    setupSender(false);
 }
 
 //--------------------------------------------------------------

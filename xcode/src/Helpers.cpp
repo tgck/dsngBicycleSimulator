@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 // setupSpaces
-// - 描画時に必要な、座標系の変換をおこないます
+// - 描画時に必要な、座標系の変換をおこないます。
 
 void ofApp::setupSpaces(){
     ofTranslate(ofGetWidth()/2.0, ofGetHeight()/2.0, 0);
@@ -11,6 +11,27 @@ void ofApp::setupSpaces(){
 //    ofScale(1, 1);
     ofScale(WINDOW_DESKTOPFIELD_RATIO, WINDOW_DESKTOPFIELD_RATIO);
 }
+
+//--------------------------------------------------------------
+// setupSender
+// - クライアントとの通信系を構築します。
+
+void ofApp::setupSender(bool bNeedSending){
+    
+    if (!bNeedSending) {
+        
+        cout << "setupSender....NO" << endl;
+        return;
+
+    } else {
+  
+        cout << "setupSender...YES" << endl;
+        // ofxOSCの初期化
+        // 宛先は3つ。
+        // TODO
+    }
+}
+
 
 //--------------------------------------------------------------
 // showDebug
