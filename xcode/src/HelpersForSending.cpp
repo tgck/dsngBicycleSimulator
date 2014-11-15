@@ -13,16 +13,15 @@ void ofApp::setupSender(bool flag){
     
     if (!bSendMode) {
         // 送信オフ
-        cout << "setupSender....NO" << endl;
+        cout << "setupSender....NO --- No use clients." << endl;
         return;
         
     } else {
         // 送信オン
         cout << "setupSender...YES" << endl;
+        
         // ofxOSCの初期化
         // 宛先は3つ。
-
-        // TODO
         senders[0].setup("127.0.0.1", 3001); // Tested with Max
 //        senders[0].setup("127.0.0.1", 12011);
         senders[1].setup("127.0.0.1", 12022);
@@ -40,8 +39,10 @@ void ofApp::updateSender(){
     // 送信モードかつ、送信対象メッセージありの時のみ送信
     if (bSendMode && bNeedSending) {
         
-        // 3000ミリ秒経過していれば送信する。
-        if (ofGetElapsedTimeMillis() > _prevSendTime + 3000.0 ){
+        // 送信タイミングの調整。
+        // 所定インターバルを経過していれば送信する。
+        if (ofGetElapsedTimeMillis() > _prevSendTime + sendInterval ){
+        
             _prevSendTime = ofGetElapsedTimeMillis();
 
             cout << "send!" << endl;
@@ -52,7 +53,6 @@ void ofApp::updateSender(){
         }
     }
 }
-
 
 //--------------------------------------------------------------
 // send
