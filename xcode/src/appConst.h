@@ -1,13 +1,13 @@
-//
-//  appConst.h
-//  mySketch
-//
-//  Created by tani on 2014/10/18.
-//
-//
 #pragma once
 
-static int winSize[2] = {200, 400};
+// アプリケーションのウィンドウサイズ(ピクセル)
+static int winSize[2] = {1200, 800};
+
+// メッセージ送信間隔(ミリ秒) [333.3]
+static float sendInterval = 3000.0;
+
+// アプリケーションウィンドウに対する、デスクトップフィールドの大きさ
+#define WINDOW_DESKTOPFIELD_RATIO 0.4
 
 //
 // color schemes

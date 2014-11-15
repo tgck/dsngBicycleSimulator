@@ -10,29 +10,59 @@ void ofApp::setup(){
     
     bAnimate = true;
     bFade = true;
+
+    desktop.setup(ofVec2f(1400, 900)); // デスクトップの解像度を入れる
     
     bike.setup();
+    bike.setupCropSettings(desktop.getCornerBegin(), desktop.getCornerEnd());
+    
+    setupFinderItems();
+    
+//    setupSender(false);
+    setupSender(true);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+
+    // モデルの更新
     if (bAnimate) bike.update();
+    
+    // 通信
+    updateSender(); // フラグの考慮は先方でやってくれる
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 
     ofPushMatrix();
-    
+
     setupSpaces(); // 座標系
     showGuide(); // ガイド
 
+    // Field
+    desktop.draw();
+    
+    // FinderItems
+    ofPushStyle();
+    ofSetColor(188);
+    for (int i=0; i<items.size(); i++){
+        items[i].draw();
+        items[i].drawInfo();
+    }
+    ofPopStyle();
+    
+    // Bike
 	bike.report();
 	bike.draw();
 
     ofPopMatrix();
     
     showDebug();
+
+    // debug
+    ofSetWindowTitle(ofToString(ofGetElapsedTimeMillis()));
 }
 
 
@@ -56,9 +86,18 @@ void ofApp::keyPressed(int key){
         case ' ':
             bAnimate = !bAnimate;
             break;
-        case 'a':
+        case 'a': // 原点から再開
             bike.setLocation(ofVec2f(0, 0));
-            bike.setHandle(0);
+            bike.resetHandle();
+            break;
+        case '1': // ハンドル角のみ初期化
+            bike.resetHandle();
+            break;
+        case '/': // テスト送信実行
+            bNeedSending = true;
+            cout << "OSC Sending Toggled to [" << bNeedSending << "]" << endl;
+            break;
+        default:
             break;
     }
 }
