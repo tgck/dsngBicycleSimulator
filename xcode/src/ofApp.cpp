@@ -18,7 +18,8 @@ void ofApp::setup(){
     
     setupFinderItems();
     
-    setupSender(false);
+//    setupSender(false);
+    setupSender(true);
 }
 
 //--------------------------------------------------------------
@@ -59,7 +60,9 @@ void ofApp::draw(){
     ofPopMatrix();
     
     showDebug();
-        
+
+    // debug
+    ofSetWindowTitle(ofToString(ofGetElapsedTimeMillis()));
 }
 
 
@@ -89,6 +92,12 @@ void ofApp::keyPressed(int key){
             break;
         case '1': // ハンドル角のみ初期化
             bike.resetHandle();
+            break;
+        case '/': // テスト送信実行
+            bNeedSending = true;
+            cout << "OSC Sending Toggled to [" << bNeedSending << "]" << endl;
+            break;
+        default:
             break;
     }
 }

@@ -6,6 +6,8 @@
 #include "Desktop.h"
 #include "FinderItem.h"
 
+#include "ofxOsc.h"
+
 class ofApp : public ofBaseApp{
 
 	public:
@@ -23,7 +25,6 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
-    
         // - - - - app - - - - //
 
         // bike and fields
@@ -35,13 +36,15 @@ class ofApp : public ofBaseApp{
     
         bool bAnimate;
         bool bFade;
-        bool bSending; // クライアントへのメッセージ送信有無
+        bool bSendMode;
+        bool bNeedSending;  // 送信メッセージあり
     
         void showDebug();
         void showGuide();
         void setupSpaces();
     
         // - - - - osc - - - - //
+        ofxOscSender senders[3];
         void setupSender(bool); // bool で起動要否を切替
         void updateSender();
         void send(); // メッセージ送信
@@ -50,6 +53,9 @@ private:
         ofBuffer tBuf;
         void setupFinderItems();
         void tBuf2Items();
+
+        // メッセージ送信
+        float _prevSendTime;    // 前回メッセージ送信時刻(ミリ秒);
 };
 
 
