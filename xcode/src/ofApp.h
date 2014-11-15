@@ -40,7 +40,11 @@ class ofApp : public ofBaseApp{
         void showDebug();
         void showGuide();
         void setupSpaces();
+    
+        // - - - - osc - - - - //
         void setupSender(bool); // bool で起動要否を切替
+        void updateSender();
+        void send(); // メッセージ送信
     
 private:
         ofBuffer tBuf;

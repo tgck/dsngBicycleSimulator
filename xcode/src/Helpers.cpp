@@ -12,25 +12,7 @@ void ofApp::setupSpaces(){
     ofScale(WINDOW_DESKTOPFIELD_RATIO, WINDOW_DESKTOPFIELD_RATIO);
 }
 
-//--------------------------------------------------------------
-// setupSender
-// - クライアントとの通信系を構築します。
 
-void ofApp::setupSender(bool bNeedSending){
-    
-    if (!bNeedSending) {
-        
-        cout << "setupSender....NO" << endl;
-        return;
-
-    } else {
-  
-        cout << "setupSender...YES" << endl;
-        // ofxOSCの初期化
-        // 宛先は3つ。
-        // TODO
-    }
-}
 
 
 //--------------------------------------------------------------
