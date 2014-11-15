@@ -18,15 +18,18 @@ void ofApp::setupReceiver(bool flag){
 //--------------------------------------------------------------
 // updateReceiver
 // - 上位アプリケーションからのメッセージを受信します。
+// - 受信した内容から、bike モデルに 最新の速さとハンドル角を設定します。
 
 // Note: 受信メッセージの例
-//      /steerReset         -- ※不使用
 //      /pedal              -- ※ 1回転するごとに bang
 //      /steerAngle 0.111   -- ハンドル角 (-1.0 .. 1.0)
+//      /steerReset
 //
 // ForTest: $oscsend localhost 8001 /sample/address iTfs 1 3.14 hello
 //          $oscsend localhost 8001 /pedal
 //          $oscsend localhost 8001 /steerAngle f 0.1111
+//          $oscsend localhost 8001 /steerReset
+//
 //
 
 void ofApp::updateReceiver(){
@@ -38,7 +41,7 @@ void ofApp::updateReceiver(){
 		}
 	}
     
-	while(receiver.hasWaitingMessages()){
+	while (receiver.hasWaitingMessages()) {
         
 		ofxOscMessage m;
 		receiver.getNextMessage(&m);
@@ -47,13 +50,35 @@ void ofApp::updateReceiver(){
         // TODO : bike モデルへの取り込み
         // TODO : switch 文にする
         if (m.getAddress() == OSCA_SENSOR_PEDAL) {
+            
             cout  << " received PEDAL" << endl;
+            
+            // モデルの更新
+            // TODO: チューニング
+            bike.pedal();
+            
         } else if (m.getAddress() == OSCA_SENSOR_STEER) {
-            float tmpSteer = m.getArgAsFloat(0);
-            cout  << " received STEER[" << tmpSteer << "]" << endl;
+            
+            float normedSteer = m.getArgAsFloat(0);
+            cout  << " received STEER[" << normedSteer << "]" << endl;
+            
+            // モデルの更新
+            // TODO: チューニング
+            if ( abs(normedSteer) <= 1.0 ) {
+                bike.setHandle(normedSteer);
+            }
+            
+        } else if (m.getAddress() == OSCA_SENSOR_STEER_RESET) {
+            
+            cout  << " received STEER_RESET" << endl;
+            
+            // モデルの更新
+            bike.setHandle(0L);
+            
         }
         
         // dumpOSC(m);
+        
     }
     
 }

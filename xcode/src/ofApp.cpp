@@ -33,7 +33,10 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update(){
 
-    if (bUseSensor) updateReceiver();
+    // センサを使う場合は、OSC受信メッセージからbikeモデルを更新
+    if (bUseSensor) {
+        updateReceiver();
+    }
     
     // モデルの更新
     if (bAnimate) bike.update();

@@ -21,13 +21,16 @@ static float sendInterval = 3000.0;
 // OSCタグ
 #define OSCA_SENSOR_PEDAL "/pedal"
 #define OSCA_SENSOR_STEER "/steerAngle"
+#define OSCA_SENSOR_STEER_RESET "/steerReset"
 
 // アプリケーションウィンドウに対する、デスクトップフィールドの大きさ
 #define WINDOW_DESKTOPFIELD_RATIO 0.4
 
+
 //
 // color schemes
 //
+
 static ofColor COLOR_BIKE = ofColor(212, 0, 0);
 static ofColor COLOR_TRACK = ofColor(212, 188, 0);
 
