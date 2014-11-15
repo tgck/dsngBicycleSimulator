@@ -1,11 +1,3 @@
-//
-//  FinderItems.cpp
-//  mySketch
-//
-//  Created by tani on 11/9/14.
-//
-//
-
 #include "FinderItem.h"
 
 //--------------------------------------------------------------
@@ -39,4 +31,14 @@ void FinderItem::draw() {
     
 }
 
+void FinderItem::drawInfo() {
+
+    ofPushStyle();
+
+    ofSetColor(COLOR_DEBUGINFO);
+    ofDrawBitmapString(ofToString(_p.x) + "\n" + ofToString(_p.y), _p.x, _p.y);
+    
+    ofPopStyle();
+    
+}
 

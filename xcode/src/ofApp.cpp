@@ -10,9 +10,12 @@ void ofApp::setup(){
     
     bAnimate = true;
     bFade = true;
+
+    desktop.setup(ofVec2f(1400, 900)); // デスクトップの解像度を入れる
     
     bike.setup();
-    field.setup(ofVec2f(200, 400));
+    bike.setupCropSettings(desktop.getCornerBegin(), desktop.getCornerEnd());
+    
     setupFinderItems();
 }
 
@@ -30,13 +33,14 @@ void ofApp::draw(){
     showGuide(); // ガイド
 
     // Field
-    field.draw();
+    desktop.draw();
     
     // FinderItems
     ofPushStyle();
     ofSetColor(188);
     for (int i=0; i<items.size(); i++){
         items[i].draw();
+        items[i].drawInfo();
     }
     ofPopStyle();
     
@@ -71,9 +75,12 @@ void ofApp::keyPressed(int key){
         case ' ':
             bAnimate = !bAnimate;
             break;
-        case 'a':
+        case 'a': // 原点から再開
             bike.setLocation(ofVec2f(0, 0));
-            bike.setHandle(0);
+            bike.resetHandle();
+            break;
+        case '1': // ハンドル角のみ初期化
+            bike.resetHandle();
             break;
     }
 }

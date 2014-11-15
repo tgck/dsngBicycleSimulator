@@ -1,11 +1,3 @@
-/*
- *  Bike.cpp
- *  emptyExample
- *
- *  Created by tani on 14/10/13.
- *  Copyright 2014 __MyCompanyName__. All rights reserved.
- *
- */
 #include "Bike.h"
 
 Bike::Bike(){
@@ -16,7 +8,6 @@ void Bike::setup(){
 	_steer = 0.0;
 	_direction = 0.0;
 	_location = ofVec2f(ofGetWidth()/2, ofGetHeight()/2);
-	// _fieldSize = ofVec2f(winSize[0], winSize[1]);
     
     // history
     _locHist.resize(20);
@@ -34,7 +25,8 @@ void Bike::update(){
 //    Util::crop(&_location, ofVec2f(-200, -100), ofVec2f(200, 100));
     
     // TODO desktopに
-    Util::crop(&_location, ofVec2f(-100, -200), ofVec2f(100, 200));
+//    Util::crop(&_location, ofVec2f(-100, -200), ofVec2f(100, 200));
+    Util::crop(&_location, _cropBegin, _cropEnd);
     
     // update history
     if (_locHist.size() >= 20) _locHist.pop_front();
@@ -130,6 +122,10 @@ void Bike::stop(){
 	_speed = 0;
 }
 
+void Bike::resetHandle(){
+    setHandle(0L);
+}
+
 //
 // handle()
 // 自転車のハンドルの変更
@@ -155,4 +151,11 @@ void Bike::report(){
     cout << s.str() << endl;
 }
 
+
+void Bike::setupCropSettings(ofVec2f corner1, ofVec2f corner2){
+    _cropBegin.x = corner1.x;
+    _cropBegin.y = corner1.y;
+    _cropEnd.x = corner1.x + corner2.x;
+    _cropEnd.y = corner1.y + corner2.y;
+};
 

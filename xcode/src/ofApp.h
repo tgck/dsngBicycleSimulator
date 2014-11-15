@@ -28,8 +28,7 @@ class ofApp : public ofBaseApp{
 
         // bike and fields
         Bike bike;
-//        ofVec2f fieldSize;
-        Desktop field;
+        Desktop desktop;
     
         // Finder Items
         vector<FinderItem> items;

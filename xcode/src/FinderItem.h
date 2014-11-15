@@ -1,10 +1,3 @@
-//
-//  FinderItem.h
-//  mySketch
-//
-//  Created by tani on 11/9/14.
-//
-//
 #pragma once
 #include <iostream>
 #include "ofMain.h"
@@ -21,6 +14,7 @@ public:
     void setup();
     void update();
     void draw();
+    void drawInfo();
     
 private:
 

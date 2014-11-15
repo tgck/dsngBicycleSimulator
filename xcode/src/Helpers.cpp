@@ -1,7 +1,3 @@
-//
-// ofApps.cpp から分岐
-//
-
 #include "ofApp.h"
 
 //--------------------------------------------------------------
@@ -11,7 +7,9 @@
 void ofApp::setupSpaces(){
     ofTranslate(ofGetWidth()/2.0, ofGetHeight()/2.0, 0);
     ofRotate(-90);
-    ofScale(1, 1);
+    
+//    ofScale(1, 1);
+    ofScale(WINDOW_DESKTOPFIELD_RATIO, WINDOW_DESKTOPFIELD_RATIO);
 }
 
 //--------------------------------------------------------------

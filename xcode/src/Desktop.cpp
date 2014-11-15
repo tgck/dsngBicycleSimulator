@@ -1,23 +1,4 @@
-//
-//  Desktop.cpp
-//  mySketch
-//
-//  Created by tani on 11/9/14.
-//
-//
-
 #include "Desktop.h"
-
-//--------------------------------------------------------------
-//
-//
-//Desktop::Desktop(const ofVec2f size){
-//    _size = size;
-//    
-//    // 描画開始座標の設定
-//    _p.x = -1 * _size.x / 2;
-//    _p.y = -1 * _size.y / 2;
-//}
 
 //--------------------------------------------------------------
 //
@@ -26,8 +7,8 @@ void Desktop::setup(const ofVec2f size) {
     _size = size;
     
     // 描画開始座標の設定
-    _p.x = -1 * _size.x / 2;
-    _p.y = -1 * _size.y / 2;
+    _p.x = -1 * _size.x/2;
+    _p.y = -1 * _size.y/2;
 }
 
 //--------------------------------------------------------------
@@ -57,6 +38,11 @@ void Desktop::draw() {
 //
 //
 ofVec2f Desktop::getCornerBegin(){
+    
+    cout << "getCornerBegin" << endl;
+    cout << _p.x  << endl;
+    cout << _p.y  << endl;
+
     return ofVec2f(_p.x, _p.y);
 }
 
@@ -65,6 +51,11 @@ ofVec2f Desktop::getCornerBegin(){
 //
 //
 ofVec2f Desktop::getCornerEnd(){
+    
+    cout << "getCornerEnd" << endl;
+    cout << _p.x + _size.x << endl;
+    cout << _p.y + _size.y << endl;
+    
     return ofVec2f(_p.x + _size.x, _p.y + _size.y);
 }
 
