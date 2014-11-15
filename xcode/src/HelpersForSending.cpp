@@ -58,20 +58,36 @@ void ofApp::updateSender(){
 // send
 // - クライアントとの通信をおこないます。
 // - Note: 宛先は固定です。
-// - TODO: 自転車情報の送信
+// - TODO: OSCバンドルするべき？
 
 void ofApp::send(){
     
     // メッセージ送信
-    ofxOscMessage m;
-    m.setAddress("/test");
-    m.addIntArg(1);
-    senders[0].sendMessage(m);
+    ofxOscMessage m0, m1, m2, m3, m4, m5;
+    m0.setAddress("/dsng2/ctl/FRAMEINFO"); // 送信回次 int, 時刻 float
+    m1.setAddress("/dsng2/ctl/sp");  // 速さ(スカラー量), float
+    m2.setAddress("/dsng2/ctl/st");  // ハンドル角 (-1.0 〜 1.0), float
+    m3.setAddress("/dsng2/ctl/dir"); // 方角 0-360, float
+    m4.setAddress("/dsng2/ctl/px");  // 位置.x座標 , float
+    m5.setAddress("/dsng2/ctl/py");  // 位置.y座標, float
     
-    m.addFloatArg(3.5f);
-    senders[1].sendMessage(m);
+    m0.addIntArg(_sendCount++);
+    m0.addFloatArg(ofGetElapsedTimeMillis());
+    m1.addFloatArg(bike._speed);
+    m2.addFloatArg(bike._steer);
+    m3.addFloatArg(bike._direction);
+    m4.addFloatArg(bike._location.x);
+    m5.addFloatArg(bike._location.y);
     
-    m.addStringArg("hello");
-    m.addFloatArg(ofGetElapsedTimef());
-    senders[2].sendMessage(m);
+    // 各宛先に送信
+    for (int i =0; i<3; i++) {
+        senders[i].sendMessage(m0);
+        senders[i].sendMessage(m1);
+        senders[i].sendMessage(m2);
+        senders[i].sendMessage(m3);
+        senders[i].sendMessage(m4);
+        senders[i].sendMessage(m5);
+    }
 }
+
+

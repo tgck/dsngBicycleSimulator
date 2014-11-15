@@ -55,6 +55,7 @@ private:
         void tBuf2Items();
 
         // メッセージ送信
+        int _sendCount; // メッセージ送信カウンタ
         float _prevSendTime;    // 前回メッセージ送信時刻(ミリ秒);
 };
 
