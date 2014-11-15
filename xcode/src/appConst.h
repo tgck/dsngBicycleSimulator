@@ -6,6 +6,14 @@ static int winSize[2] = {1200, 800};
 // メッセージ送信間隔(ミリ秒) [333.3]
 static float sendInterval = 3000.0;
 
+// メッセージ送信
+#define S_HOST_LOCAL "127.0.0.1"
+#define S_HOST_PC1 "192.168.0.1"
+#define S_HOST_PC2 "192.168.0.2"
+#define S_PORT_1 12011 // サウンドプレーヤ
+#define S_PORT_2 12022 // 2D app
+#define S_PORT_3 12033 // 3D app
+
 // メッセージ受信
 #define L_PORT 8001
 #define NUM_MSG_STRINGS 20

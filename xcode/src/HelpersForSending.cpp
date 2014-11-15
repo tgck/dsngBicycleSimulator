@@ -22,10 +22,13 @@ void ofApp::setupSender(bool flag){
         
         // ofxOSCの初期化
         // 宛先は3つ。
-//        senders[0].setup("127.0.0.1", 3001); // Tested with Max
-        senders[0].setup("127.0.0.1", 12011);
-        senders[1].setup("127.0.0.1", 12022);
-        senders[2].setup("127.0.0.1", 12033);
+//        senders[0].setup("127.0.0.1", 12011);
+//        senders[1].setup("127.0.0.1", 12022);
+//        senders[2].setup("127.0.0.1", 12033);
+        senders[0].setup(S_HOST_LOCAL, S_PORT_1); // サウンドプレーヤ
+        senders[1].setup(S_HOST_LOCAL, S_PORT_2); // 2D app
+//        senders[2].setup(S_HOST_PC2, S_PORT_3); // 3D app
+        // TODO : 接続時の例外処理
     }
 }
 
