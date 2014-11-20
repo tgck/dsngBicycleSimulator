@@ -13,11 +13,13 @@ void ofApp::setupSpaces(){
 }
 
 
-
-
 //--------------------------------------------------------------
 // showDebug
 // - デバッグ情報を表示します
+//   1.スピード
+//   2.ハンドル角(-1.0 - 1.0)
+//   3.方角(ラジアン値)
+//   4.位置
 
 void ofApp::showDebug(){
     
@@ -26,27 +28,34 @@ void ofApp::showDebug(){
     float sp = b->_speed;
     float st = b->_steer;
     
-    //
-    // speed 0.  and steer -1.0 .. 1.0
-    //
-    stringstream s1, s2;
-    for (int i = 0 ; i < 10; i++){
-        s1 << (sp * 10 > i ? '*' : '-') ;
-    }
-    s1 << " .. "  << ofToString(sp, 2) << endl;
+    stringstream s1, s2, s3, s4;
     
-    int stRounded = round( ofMap(st, -1, 1, 0, 10) );
-    for (int i = 0 ; i < 10; i++){
-        s2 << (stRounded == i ? '|' : '-') ;
-    }
-    s2 << " .. "  << ofToString(st, 2) << endl;
+    // speed
+    s1 << "speed     :  " << ofToString(sp, 2) << "    ";
+    for (int i = 0 ; i < 40; i++) s1 << (sp * 10 > i ? '*' : '-') ;
     
+    // steer
+    int stRounded = round( ofMap(st, -1, 1, 0, 20) );
+    s2 << "steer     : " << (st < 0 ?'-':' ')
+                        << ofToString(abs(st), 2) << "    ";
+    for (int i = 0 ; i < 21; i++) s2 << (stRounded == i ? '|' : '-') ;
+    
+    
+    //  direction (radian)
+    s3 << "direction : " << (b->_direction < 0 ?'-':' ')
+                         << ofToString(abs(b->_direction), 2)  << endl;
+    s4 << "position  : " << (b->_location.x < 0 ?'-':' ')
+                         <<  ofToString(abs(b->_location.x), 0) << ", "
+                         << (b->_location.y < 0 ?'-':' ')
+                         <<  ofToString(abs(b->_location.y), 0) << endl;
     
     ofPushStyle();
     
     ofSetColor(COLOR_DEBUGINFO);
-    ofDrawBitmapString(s1.str(), 20, 20);
-    ofDrawBitmapString(s2.str(), 20, 40);
+    ofDrawBitmapString(s1.str(), 20, 20);   // speed
+    ofDrawBitmapString(s2.str(), 20, 40);   // steer -1..1.
+    ofDrawBitmapString(s3.str(), 20, 70);   // dir(rad)
+    ofDrawBitmapString(s4.str(), 20, 90);   // position (x,y)
     
     ofPopStyle();
 }

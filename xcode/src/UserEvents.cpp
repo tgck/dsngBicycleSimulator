@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 // keyPressed
-// - Note: キーイベントはデバッグ用に設定しています。
+// - Note: /キーイベントはデバッグ用に設定しています。
 //
 void ofApp::keyPressed(int key){
     
@@ -31,6 +31,7 @@ void ofApp::keyPressed(int key){
         case 'a': // 原点から再開
             bike.setLocation(ofVec2f(0, 0));
             bike.resetHandle();
+            bike._speed = 1.0;
             break;
         case '1': // ハンドル角のみ初期化
             bike.resetHandle();

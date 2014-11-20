@@ -27,7 +27,7 @@ void ofApp::setupSender(bool flag){
 //        senders[2].setup("127.0.0.1", 12033);
         senders[0].setup(S_HOST_LOCAL, S_PORT_1); // サウンドプレーヤ
         senders[1].setup(S_HOST_LOCAL, S_PORT_2); // 2D app
-//        senders[2].setup(S_HOST_PC2, S_PORT_3); // 3D app
+        senders[2].setup(S_HOST_PC2, S_PORT_3); // 3D app
         // TODO : 接続時の例外処理
     }
 }
