@@ -49,6 +49,13 @@ void ofApp::showDebug(){
                          << (b->_location.y < 0 ?'-':' ')
                          <<  ofToString(abs(b->_location.y), 0) << endl;
     
+    // desktop size info
+    stringstream s5, s6;
+    s5 << "Desktop Size : " << desktop._size.x << ", "
+                            << desktop._size.y << endl;
+    s6 << "Desktop Pos  : " << desktop._p.x << ", "
+                            << desktop._p.y << endl;
+    
     
     ofPushStyle();
     ofSetColor(COLOR_DEBUGINFO);
@@ -56,7 +63,11 @@ void ofApp::showDebug(){
     ofDrawBitmapString(s2.str(), 20, 36);   // steer -1..1.
     ofDrawBitmapString(s3.str(), 20, 52);   // dir(rad)
     ofDrawBitmapString(s4.str(), 20, 68);   // position (x,y)
+    
+    ofDrawBitmapString(s5.str(), 20, 84);   // size (x,y)
+    ofDrawBitmapString(s6.str(), 20, 100);  // position (x,y)
     ofPopStyle();
+    
 }
 
 //--------------------------------------------------------------
@@ -69,10 +80,11 @@ void ofApp::showMenu(){
 
     s1 <<      "KEYS / / / / / / / / / / / / / / / / / / / "
     << endl << "    SPACE . " "Ticks on/off"
-    << endl << "        a . " "restart with origin"
-    << endl << "        1 . " "reset steer"
-    << endl << "        / . " "OSC test Send"
-    << endl << "        ? . " "Show this Menu"
+    << endl << "     DOWN . " "Stop the bike."
+    << endl << "        a . " "Restarts the bike with the origin."
+    << endl << "        1 . " "Reset steer."
+    << endl << "        / . " "OSC test send."
+    << endl << "        ? . " "Show/hide this Menu."
     << endl << "/ / / / / / / / / / / / / / / / / / / / / / "
     << endl;
     
