@@ -49,16 +49,36 @@ void ofApp::showDebug(){
                          << (b->_location.y < 0 ?'-':' ')
                          <<  ofToString(abs(b->_location.y), 0) << endl;
     
-    ofPushStyle();
     
+    ofPushStyle();
     ofSetColor(COLOR_DEBUGINFO);
     ofDrawBitmapString(s1.str(), 20, 20);   // speed
-    ofDrawBitmapString(s2.str(), 20, 40);   // steer -1..1.
-    ofDrawBitmapString(s3.str(), 20, 70);   // dir(rad)
-    ofDrawBitmapString(s4.str(), 20, 90);   // position (x,y)
-    
+    ofDrawBitmapString(s2.str(), 20, 36);   // steer -1..1.
+    ofDrawBitmapString(s3.str(), 20, 52);   // dir(rad)
+    ofDrawBitmapString(s4.str(), 20, 68);   // position (x,y)
     ofPopStyle();
 }
+
+//--------------------------------------------------------------
+// showMenu
+// - 座標系を表現するガイドを表示します
+// - X, Y軸の正方向を太線とする
+
+void ofApp::showMenu(){
+    stringstream s1;
+
+    s1 <<      "KEYS / / / / / / / / / / / / / / / / / / / "
+    << endl << "    SPACE . " "Ticks on/off"
+    << endl << "        a . " "restart with origin"
+    << endl << "        1 . " "reset steer"
+    << endl << "        / . " "OSC test Send"
+    << endl << "        ? . " "Show this Menu"
+    << endl << "/ / / / / / / / / / / / / / / / / / / / / / "
+    << endl;
+    
+    ofDrawBitmapString(s1.str(), ofGetWidth()/2-165, 140);
+}
+
 
 //--------------------------------------------------------------
 // showGuide
